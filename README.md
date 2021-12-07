@@ -1,0 +1,2 @@
+# SelfBillingQRApp
+project Psdl
