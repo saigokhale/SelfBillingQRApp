@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SelfBillingQRApp</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign In</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="enter_email">Enter your Email</string>
+    <string name="enter_password1">Enter Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="showQR">SCAN</string>
+</resources>
