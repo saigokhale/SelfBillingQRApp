@@ -56,9 +56,11 @@ public class QrActivity<permissions> extends AppCompatActivity
                     @Override
                     public void run() {
                         //Toast.makeText(this, result.toString(),Toast.LENGTH_SHORT);
+                        //SUPER IMPORTANT PART OF TH CODE WHICH WILL TAKE US TO THE NEXT ACTIVITY
                         txt.setText(result.getText());
                         String temp=txt.getText().toString();
                         Toast.makeText(QrActivity.this, temp,Toast.LENGTH_SHORT).show();
+                        //perform intent from here, activity to add item into cart or not
                     }
                 });
             }
