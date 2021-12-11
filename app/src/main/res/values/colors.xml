@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="darkpurple">#752090</color>
+    <color name="lightpurple">#C957BC</color>
+    <color name="ochre">#FFC872</color>
+    <color name="cream">#FFE3B3</color>
+    <color name="mint">#8FB9A8</color>
+    <color name="beige">#FEFAD4</color>
+    <color name="salmon">#FCD0BA</color>
+    <color name="lolly">#F1828D</color>
+    <color name="mud">#765D69</color>
 </resources>

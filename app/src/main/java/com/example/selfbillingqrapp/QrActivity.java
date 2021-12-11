@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -58,9 +59,13 @@ public class QrActivity<permissions> extends AppCompatActivity
                         //Toast.makeText(this, result.toString(),Toast.LENGTH_SHORT);
                         //SUPER IMPORTANT PART OF TH CODE WHICH WILL TAKE US TO THE NEXT ACTIVITY
                         txt.setText(result.getText());
-                        String temp=txt.getText().toString();
-                        Toast.makeText(QrActivity.this, temp,Toast.LENGTH_SHORT).show();
+                        String code=txt.getText().toString();
+                        Toast.makeText(QrActivity.this, code,Toast.LENGTH_SHORT).show();
                         //perform intent from here, activity to add item into cart or not
+
+                        Intent intent_display = new Intent(getApplicationContext(), DisplayDetails.class);
+                        intent_display.putExtra("code", code);
+                        startActivity(intent_display);
                     }
                 });
             }

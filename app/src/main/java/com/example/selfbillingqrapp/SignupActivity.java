@@ -21,8 +21,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         Toast t;
-        //t=Toast.makeText(this,"welcome!",Toast.LENGTH_LONG);
-        //t.show();
 
         sign_up = (Button) findViewById(R.id.SignUpFinal);
         username = (EditText) findViewById(R.id.signupusername);
