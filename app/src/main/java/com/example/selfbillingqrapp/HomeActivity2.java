@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeActivity2 extends AppCompatActivity {
-    Button QRButton;
+    ImageButton QRButton;
     int PERM_CODE = 11;
     String[] permissions = {
             Manifest.permission.CAMERA
@@ -27,12 +27,11 @@ public class HomeActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
 
-        QRButton = (Button) findViewById(R.id.buttonQR);
+        QRButton = (ImageButton) findViewById(R.id.qrbtn);
 
         QRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(checkpermissions())
                     startActivity(new Intent(getApplicationContext(), QrActivity.class));
             }
         });

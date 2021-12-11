@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity"
+    android:background="@color/beige">
 
     <EditText
         android:id="@+id/signupusername"
@@ -12,6 +13,7 @@
         android:layout_height="78dp"
         android:layout_marginTop="132dp"
         android:hint="@string/enter_email"
+        android:textColorHint="@color/white"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
@@ -24,6 +26,7 @@
         android:layout_height="78dp"
         android:layout_marginTop="240dp"
         android:hint="@string/enter_password1"
+        android:textColorHint="@color/white"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
@@ -36,6 +39,7 @@
         android:layout_height="78dp"
         android:layout_marginTop="344dp"
         android:hint="@string/confirm_password"
+        android:textColorHint="@color/white"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
@@ -47,7 +51,8 @@
         android:layout_width="165dp"
         android:layout_height="70dp"
         android:layout_gravity="start"
-
+        android:backgroundTint="@color/beige"
+        android:textColor="@color/black"
         android:text="@string/action_sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
