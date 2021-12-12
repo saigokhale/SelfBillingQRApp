@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/qr_scan_button" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/cartbtn"
         android:layout_width="180dp"
         android:layout_height="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
