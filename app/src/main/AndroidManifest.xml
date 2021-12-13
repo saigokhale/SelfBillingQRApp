@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SelfBillingQRApp">
         <activity
+            android:name=".display2"
+            android:exported="false" />
+        <activity
             android:name=".DisplayDetails"
             android:exported="false" />
         <activity

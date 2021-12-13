@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     String username_str;
+    static String send_uname;
     String password_str;
     DBHandler DB;
 
@@ -63,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
     {
         String user= username.getText().toString();
         String pass= password.getText().toString();
+        setuname(user);
 
         if(user.equals("")||pass.equals(""))
             Toast.makeText(LoginActivity.this,"please enter all fields",Toast.LENGTH_SHORT).show();
@@ -80,6 +82,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
+    }
+    public static void setuname(String username)
+    {
+        send_uname=username;
+    }
+    public static String getuname()
+    {
+        return send_uname;
     }
 
 

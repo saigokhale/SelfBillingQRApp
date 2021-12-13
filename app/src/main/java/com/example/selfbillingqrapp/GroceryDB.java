@@ -23,16 +23,25 @@ public class GroceryDB extends SQLiteOpenHelper
         public void onCreate(SQLiteDatabase grocery)
         {
             grocery.execSQL("CREATE TABLE items(code text primary key, name TEXT, mfg TEXT, exp TEXT, price text)");
+            insertData("1","ParleG","21-08-2020","10-03-2022","20");
+            insertData("2","Colgate","21-08-2021","10-03-2021","20");
+            insertData("3","Lays","21-08-20","10-03-2021","20");
+            insertData("4","Maggi","21-08-20","10-03-2021","10");
+            insertData("5","Chocobar","21-08-20","10-03-2021","20");
+            insertData("6","ParleG","01-10-20","10-03-2021","20");
+            insertData("7","Cadbury","21-08-19","10-03-2021","20");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase grocery, int i, int i1)
         {
             grocery.execSQL("DROP TABLE IF EXISTS items");
+
+
         }
 
         //public boolean insertData(int srno, String name, String mdate, String edate, int price)
-        public boolean insertData()
+        public boolean insertData(String a, String b, String c , String d, String e)
         {
             try {
                 SQLiteDatabase GroceryDB = this.getWritableDatabase();
@@ -46,7 +55,7 @@ public class GroceryDB extends SQLiteOpenHelper
                     return true;
                 return false;
             }
-            catch(Exception e)
+            catch(Exception x)
             {
                 return false;
             }

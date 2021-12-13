@@ -17,10 +17,12 @@ import java.util.List;
 
 public class HomeActivity2 extends AppCompatActivity {
     ImageButton QRButton;
+    ImageButton WishButton;
     int PERM_CODE = 11;
     String[] permissions = {
             Manifest.permission.CAMERA
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,14 @@ public class HomeActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_home2);
 
         QRButton = (ImageButton) findViewById(R.id.qrbtn);
+        WishButton=(ImageButton) findViewById(R.id.wishbtn);
+
+        WishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), display2.class));
+            }
+        });
 
         QRButton.setOnClickListener(new View.OnClickListener() {
             @Override
