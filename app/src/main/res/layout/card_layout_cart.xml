@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="94dp"
+            android:layout_marginTop="80dp"
             android:layout_marginBottom="20dp"
             android:paddingLeft="20dp"
             android:text="Qty"
@@ -67,25 +67,31 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/increase_btn"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+        <Button
+            android:id="@+id/buttonup"
+            android:layout_width="29dp"
+            android:layout_height="31dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="279dp"
-            app:srcCompat="@android:drawable/arrow_up_float" />
+            android:layout_marginTop="69dp"
+            android:layout_marginEnd="243dp"
+            android:backgroundTint="@color/white"
+            android:padding="1dp"
+            android:text="+"
+            android:textColor="@color/black" />
 
-        <ImageButton
-            android:id="@+id/decrease_btn"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
+        <Button
+            android:id="@+id/buttondown"
+            android:layout_width="29dp"
+            android:layout_height="31dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="102dp"
-            android:layout_marginEnd="278dp"
-            app:srcCompat="@android:drawable/arrow_down_float" />
+            android:layout_marginTop="97dp"
+            android:layout_marginEnd="243dp"
+            android:backgroundTint="@color/white"
+            android:padding="1dp"
+            android:text="-"
+            android:textColor="@color/black" />
 
 
     </RelativeLayout>

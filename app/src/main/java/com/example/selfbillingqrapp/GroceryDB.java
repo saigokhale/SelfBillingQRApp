@@ -23,13 +23,6 @@ public class GroceryDB extends SQLiteOpenHelper
         public void onCreate(SQLiteDatabase grocery)
         {
             grocery.execSQL("CREATE TABLE items(code text primary key, name TEXT, mfg TEXT, exp TEXT, price text)");
-            insertData("1","ParleG","21-08-2020","10-03-2022","20");
-            insertData("2","Colgate","21-08-2021","10-03-2021","20");
-            insertData("3","Lays","21-08-20","10-03-2021","20");
-            insertData("4","Maggi","21-08-20","10-03-2021","10");
-            insertData("5","Chocobar","21-08-20","10-03-2021","20");
-            insertData("6","ParleG","01-10-20","10-03-2021","20");
-            insertData("7","Cadbury","21-08-19","10-03-2021","20");
         }
 
         @Override

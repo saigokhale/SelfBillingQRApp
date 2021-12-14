@@ -4,6 +4,7 @@ import static com.example.selfbillingqrapp.HomeActivity2.cdb;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.collection.CircularIntArray;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -21,6 +23,11 @@ import java.util.Collections;
 
 public class display2 extends AppCompatActivity
  {
+     public static TextView grandTotal;
+     public static int grandTotalPlus;
+     public static ArrayList<ModelCartHandler> tempArrayList;
+     public static int grandTotalplus;
+     public static ArrayList<ModelCartHandler> temparraylist;
      private RecyclerView wishlistRV;
      // Arraylist for storing data
      //CartDB cdb;
@@ -41,7 +48,7 @@ public class display2 extends AppCompatActivity
             int price1 = res.getInt(4);
             int quant = res.getInt(3);
 
-            wishlistArrayList.add(new ModelCartHandler(name1, Integer.toString(quant), price1));
+            wishlistArrayList.add(new ModelCartHandler(name1, 1, price1));
         }
 
         wishlistRV = findViewById(R.id.idRVCourse);
@@ -92,7 +99,6 @@ public class display2 extends AppCompatActivity
                         // adding on click listener to our action of snack bar.
                         // below line is to add our item to array list with a position.
                         wishlistArrayList.add(position, deletedCourse);
-
                         // below line is to notify item is
                         // added to our adapter class.
                         cartAdapter.notifyItemInserted(position);

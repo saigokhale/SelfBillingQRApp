@@ -3,13 +3,13 @@ package com.example.selfbillingqrapp;
 public class ModelCartHandler
 {
     private String product_name;
-    private String mfg;
+    private int qty;
     private int price;
-
+    public static int cash=0;
     // Constructor
-    public ModelCartHandler(String product_name, String mfg,int price) {
+    public ModelCartHandler(String product_name, int qty,int price) {
         this.product_name = product_name;
-        this.mfg = mfg;
+        this.qty = qty;
         this.price = price;
     }
 
@@ -22,12 +22,12 @@ public class ModelCartHandler
         this.product_name = product_name;
     }
 
-    public String getMfg() {
-        return mfg;
+    public int getQty() {
+        return qty;
     }
 
-    public void setMfg(String mfg) {
-        this.mfg = mfg;
+    public void setQty(int qty) {
+        this.qty = qty;
     }
 
     public int getPrice() {
@@ -36,5 +36,10 @@ public class ModelCartHandler
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+
+    public int setTotalCash(int cash_in) {
+        return cash_in;
     }
 }
