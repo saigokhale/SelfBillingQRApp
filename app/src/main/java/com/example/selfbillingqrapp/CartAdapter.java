@@ -49,6 +49,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
         holder.NameTV.setText(model.get_name());
         holder.QtyTV.setText(String.valueOf(model.getQty()));
         holder.priceTV.setText(String.valueOf(model.getPrice()));
+
+
+
         holder.up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,16 +67,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
                 ModelArrayList.get(position_2).setQty((count));
                 holder.QtyTV.setText(String.valueOf(ModelArrayList.get(position_2).getQty()));
                 int cash = (ModelArrayList.get(position_2).getQty() * (ModelArrayList.get(position_2).getPrice()));
-
                 holder.priceTV.setText(String.valueOf(cash));
-                //cartModelArrayList.get(position).setTotalCash(cash);
-                //holder.productCartPrice.setText(String.valueOf(cash));
-                //for (int i = 0; i < temparraylist.size(); i++) {
-                //   grandTotalplus = grandTotalplus + temparraylist.get(i).getTotalCash();
-                //}
 
-//                    Log.d("totalcashthegun", String.valueOf(grandTotalplus));
-//                    grandTotal.setText(String.valueOf(grandTotalplus));
+
             }
         });
 
@@ -102,6 +98,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
 
     }
 
+
     @Override
     public int getItemCount() {
         // this method is used for showing number
@@ -125,8 +122,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
             QtyTV = itemView.findViewById(R.id.card_text2);
             up = itemView.findViewById(R.id.buttonup);
             down = itemView.findViewById(R.id.buttondown);
-            grandTot=itemView.findViewById(R.id.footer_text);
-            display2.grandTotal=itemView.findViewById(R.id.footer_text);
+//            grandTot=itemView.findViewById(R.id.footer_text);
+//            display2.grandTotal=itemView.findViewById(R.id.footer_text);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.selfbillingqrapp;
 
 import static com.example.selfbillingqrapp.HomeActivity2.cdb;
+import static com.example.selfbillingqrapp.HomeActivity2.gdb;
 import static com.example.selfbillingqrapp.HomeActivity2.wdb;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class DisplayDetails extends AppCompatActivity
     ImageButton bhome;
     //EditText code,mfg,exp,price,name;
     TextView tv1,tv2,tv3,tv4;//,tv2;
-    GroceryDB gdb ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,7 +57,7 @@ public class DisplayDetails extends AppCompatActivity
         tv3= (TextView) findViewById(R.id.textView3);
         tv4= (TextView) findViewById(R.id.textView4);
 
-        gdb = new GroceryDB(this);
+
 
 
         Bundle extras = getIntent().getExtras();
@@ -68,7 +69,8 @@ public class DisplayDetails extends AppCompatActivity
         Cursor res= gdb.getbycode(code_in);
 
         if(res.getCount()==0){
-            Toast.makeText(getApplicationContext(), "No data in Table", Toast.LENGTH_LONG);
+            //Toast to display index of row in grocery database
+            //Toast.makeText(getApplicationContext(), "No data in Table", Toast.LENGTH_LONG);
             return;
         }
 
@@ -86,7 +88,7 @@ public class DisplayDetails extends AppCompatActivity
             tv3.setText("Exp: "+exp);
 
             price=Integer.valueOf(res.getString(4));
-            tv4.setText("Rs: "+Integer.toString(price));
+            tv4.setText("₹ "+Integer.toString(price));
             //sb.append("\n");
         }
 
@@ -105,7 +107,13 @@ public class DisplayDetails extends AppCompatActivity
 //                wishobj.putValue(name, mfg,price);
                 //Intent intent_display2= new Intent(getApplicationContext(), display2.class);
                 //startActivity(intent_display2);
-                Toast.makeText(DisplayDetails.this, x+"", Toast.LENGTH_SHORT).show();
+                if(x)
+                    Toast.makeText(DisplayDetails.this, "Added to cart", Toast.LENGTH_SHORT).show();
+                else
+                {
+                    Toast.makeText(DisplayDetails.this, "Already in cart", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

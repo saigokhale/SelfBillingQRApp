@@ -153,4 +153,17 @@ public class CartDB extends SQLiteOpenHelper
 
     }
 
+    public boolean cleardata(String uname) {
+        try {
+            SQLiteDatabase CartDB = this.getWritableDatabase();
+            //Cursor cursor=CartDB.rawQuery("delete from cart3 where username=? and name=?",new String[]{uname,name});
+            CartDB.delete("cart3", "username=?", new String[]{uname});
+            return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+        }
+
+    }
 }

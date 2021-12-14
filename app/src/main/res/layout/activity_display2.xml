@@ -11,24 +11,57 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVCourse"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="685dp" />
 
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="0dp"
         android:background="#689F38"
-        android:gravity="center"
-        android:layout_gravity="center">
+        android:gravity="center">
+
         <TextView
             android:id="@+id/footer_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: "
-            android:textColor="#FFFFFF"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="12dp"
             android:gravity="center"
-            android:textSize="25sp"/>
+            android:text="- -"
+            android:textColor="#FFFFFF"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/total_button"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="187dp"
+            android:layout_marginBottom="2dp"
+            android:backgroundTint="#608F37"
+            android:text="Calculate Total: "
+            android:textColor="@color/white" />
+
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/checkout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="67dp"
+        android:textColor="@color/white"
+        android:backgroundTint="#2f2fa2"
+        android:text="CHECKOUT" />
 
 </RelativeLayout>

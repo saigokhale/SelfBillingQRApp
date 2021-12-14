@@ -3,15 +3,20 @@ package com.example.selfbillingqrapp;
 import static com.example.selfbillingqrapp.HomeActivity2.cdb;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.collection.CircularIntArray;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,21 +27,25 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class display2 extends AppCompatActivity
- {
-     public static TextView grandTotal;
-     public static int grandTotalPlus;
-     public static ArrayList<ModelCartHandler> tempArrayList;
-     public static int grandTotalplus;
-     public static ArrayList<ModelCartHandler> temparraylist;
-     private RecyclerView wishlistRV;
-     // Arraylist for storing data
-     //CartDB cdb;
-     private ArrayList<ModelCartHandler> wishlistArrayList;
+{
+    public static TextView grandTotal;
+    public static int grandTotalPlus;
+    public static ArrayList<ModelCartHandler> tempArrayList;
+    public static int grandTotalplus;
+    public static ArrayList<ModelCartHandler> temparraylist;
+    private RecyclerView wishlistRV;
+    private Button calc_total,check_out;
+    private TextView show_total;
+    // Arraylist for storing data
+    //CartDB cdb;
+    private ArrayList<ModelCartHandler> wishlistArrayList;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display2);
+
+        Toast.makeText(getApplicationContext(), "Swipe to delete item", Toast.LENGTH_SHORT).show();
 
         wishlistArrayList = new ArrayList<>();
         //Toast.makeText(getApplicationContext(), LoginActivity.getuname(), Toast.LENGTH_LONG).show();
@@ -52,6 +61,65 @@ public class display2 extends AppCompatActivity
         }
 
         wishlistRV = findViewById(R.id.idRVCourse);
+        calc_total = findViewById(R.id.total_button);
+        show_total = findViewById(R.id.footer_text);
+        check_out= findViewById(R.id.checkout_button);
+
+        calc_total.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int cart_total_temp=0;
+                for (int i = 0; i < wishlistArrayList.size(); i++) {
+                    cart_total_temp += wishlistArrayList.get(i).getPrice() * wishlistArrayList.get(i).getQty();
+                }
+                show_total.setText("Total: ₹ " + cart_total_temp);
+            }
+        });
+
+        check_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(display2.this);
+                // Set the message show for the Alert time
+                builder.setMessage("Confirm Checkout?");
+                // Set Alert Title
+                builder.setTitle("Hey "+LoginActivity.getuname());
+                // Set Cancelable false
+                // for when the user clicks on the outside
+                // the Dialog Box then it will remain show
+                builder.setCancelable(false);
+                // Set the positive button with yes name
+                // OnClickListener method is use of
+                // DialogInterface interface.
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        // When the user click yes button
+                        // then enter intent
+                        startActivity(new Intent(getApplicationContext(), CheckOut.class));
+                    }
+                });
+                // Set the Negative button with No name
+                // OnClickListener method is use
+                // of DialogInterface interface.
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        // If user click no
+                        // then dialog box is canceled.
+                        dialog.cancel();
+                    }
+                });
+                // Create the Alert dialog
+                AlertDialog alertDialog = builder.create();
+                // Show the Alert Dialog box
+                alertDialog.show();
+            }
+        });
 
         // we are initializing our adapter class and passing our arraylist to it.
         CartAdapter cartAdapter = new CartAdapter(this, wishlistArrayList);
@@ -114,8 +182,8 @@ public class display2 extends AppCompatActivity
 
 
 
-     public ArrayList<ModelCartHandler> returnList()
-     {
-         return wishlistArrayList;
-     }
+    public ArrayList<ModelCartHandler> returnList()
+    {
+        return wishlistArrayList;
+    }
 }

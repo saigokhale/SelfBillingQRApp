@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SelfBillingQRApp">
         <activity
+            android:name=".CheckOut"
+            android:exported="false" />
+        <activity
             android:name=".displaywish"
             android:exported="false" />
         <activity

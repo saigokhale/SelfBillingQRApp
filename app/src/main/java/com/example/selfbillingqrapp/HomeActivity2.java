@@ -25,7 +25,7 @@ public class HomeActivity2 extends AppCompatActivity {
     };
     public static CartDB cdb;
     public static WishDB wdb;
-
+    public static GroceryDB gdb ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +36,7 @@ public class HomeActivity2 extends AppCompatActivity {
         CartButton=(ImageButton) findViewById(R.id.cartbtn);
         cdb= new CartDB(this);
         wdb=new WishDB(this);
+        gdb = new GroceryDB(this);
 
         CartButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -52,7 +52,7 @@
             android:layout_marginBottom="20dp"
             android:layout_toRightOf="@id/card_text"
             android:paddingEnd="20dp"
-            android:text="Cost: Rs"
+            android:text="Cost: ₹"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="15sp"

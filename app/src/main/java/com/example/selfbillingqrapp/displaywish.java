@@ -39,6 +39,8 @@ public class displaywish extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaywish);
 
+        Toast.makeText(getApplicationContext(), "Swipe to delete item", Toast.LENGTH_SHORT).show();
+
         wishlistArrayList2 = new ArrayList<>();
         //Toast.makeText(getApplicationContext(), LoginActivity.getuname(), Toast.LENGTH_LONG).show();
         Cursor res= wdb.getdata_byuname(LoginActivity.getuname());
