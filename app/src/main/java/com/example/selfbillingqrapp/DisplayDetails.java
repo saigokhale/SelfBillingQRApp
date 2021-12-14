@@ -1,5 +1,7 @@
 package com.example.selfbillingqrapp;
 
+import static com.example.selfbillingqrapp.HomeActivity2.cdb;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,9 +18,6 @@ import java.util.ArrayList;
 
 public class DisplayDetails extends AppCompatActivity
 {
-    public final display2 wishobj=new display2();
-    ArrayList<ModelCartHandler> tempList=new ArrayList<>();
-
     int price;
     String name;
     String mfg;
@@ -26,7 +25,7 @@ public class DisplayDetails extends AppCompatActivity
     //EditText code,mfg,exp,price,name;
     TextView tv1,tv2,tv3,tv4;//,tv2;
     GroceryDB gdb ;
-    public static CartDB cdb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,7 +53,6 @@ public class DisplayDetails extends AppCompatActivity
         tv4= (TextView) findViewById(R.id.textView4);
 
         gdb = new GroceryDB(this);
-        cdb = new CartDB(this);
 
 
         Bundle extras = getIntent().getExtras();
@@ -74,22 +72,16 @@ public class DisplayDetails extends AppCompatActivity
 
         while(res.moveToNext())
         {
-            sb.append("Code: "+res.getString(0)+"\n");
-
             name=res.getString(1);
             tv1.setText(name);
-            sb.append("Name   : "+res.getString(1)+"\n");
 
             mfg=res.getString(2);
             tv2.setText("Mfg: "+mfg);
-            sb.append("Mfg   : "+res.getString(2)+"\n");
 
             String exp=res.getString(3);
-            sb.append("Exp   : "+res.getString(3)+"\n");
             tv3.setText("Exp: "+exp);
 
             price=Integer.valueOf(res.getString(4));
-            sb.append("Price   : "+res.getString(4)+"\n");
             tv4.setText("Rs: "+Integer.toString(price));
             //sb.append("\n");
         }
@@ -101,12 +93,12 @@ public class DisplayDetails extends AppCompatActivity
         bwish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cdb.insertData(LoginActivity.getuname(),name,1,price);
+                boolean x=cdb.insertData(LoginActivity.getuname(),name,1,price);
                 //tempList= wishobj.returnList();
 //                wishobj.putValue(name, mfg,price);
                 //Intent intent_display2= new Intent(getApplicationContext(), display2.class);
                 //startActivity(intent_display2);
-                Toast.makeText(DisplayDetails.this, "Insertion successful!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DisplayDetails.this, x+"", Toast.LENGTH_SHORT).show();
             }
         });
 //        binsert.setOnClickListener(new View.OnClickListener() {

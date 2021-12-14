@@ -22,7 +22,7 @@ public class HomeActivity2 extends AppCompatActivity {
     String[] permissions = {
             Manifest.permission.CAMERA
     };
-
+    public static CartDB cdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class HomeActivity2 extends AppCompatActivity {
 
         QRButton = (ImageButton) findViewById(R.id.qrbtn);
         WishButton=(ImageButton) findViewById(R.id.wishbtn);
+        cdb= new CartDB(this);
 
         WishButton.setOnClickListener(new View.OnClickListener() {
             @Override

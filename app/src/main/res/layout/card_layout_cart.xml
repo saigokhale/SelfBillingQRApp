@@ -68,12 +68,24 @@
             android:textStyle="bold" />
 
         <ImageButton
-            android:id="@+id/cross_btn"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:id="@+id/increase_btn"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="17dp"
-            app:srcCompat="@android:drawable/btn_dialog" />
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="279dp"
+            app:srcCompat="@android:drawable/arrow_up_float" />
+
+        <ImageButton
+            android:id="@+id/decrease_btn"
+            android:layout_width="25dp"
+            android:layout_height="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="102dp"
+            android:layout_marginEnd="278dp"
+            app:srcCompat="@android:drawable/arrow_down_float" />
 
 
     </RelativeLayout>

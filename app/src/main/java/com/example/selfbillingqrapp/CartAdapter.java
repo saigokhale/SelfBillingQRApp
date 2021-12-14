@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,12 +17,23 @@ import java.util.ArrayList;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
     private Context context;
     private ArrayList<ModelCartHandler> ModelArrayList;
-
+    //AdapterView.OnItemClickListener mListener;
     // Constructor
     public CartAdapter(Context context, ArrayList<ModelCartHandler> courseModelArrayList) {
         this.context = context;
         this.ModelArrayList = courseModelArrayList;
     }
+
+
+//    public interface onItemClickListener
+//    {
+//        void onIncClick(int position);
+//        void onDecClick(int position);
+//    }
+//
+//    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
+//        mListener = listener;
+//    }
 
     @NonNull
     @Override
@@ -37,6 +50,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
         holder.NameTV.setText(model.get_name());
         holder.MfgTV.setText(model.getMfg());
         holder.priceTV.setText(String.valueOf(model.getPrice()));
+
     }
 
     @Override
@@ -51,12 +65,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.Viewholder>{
     public class Viewholder extends RecyclerView.ViewHolder {
 
         private TextView priceTV, NameTV,MfgTV;
+        private ImageButton up,down;
 
-        public Viewholder(@NonNull View itemView) {
+        public Viewholder(@NonNull View itemView)
+        {
             super(itemView);
             priceTV = itemView.findViewById(R.id.card_text3);
             NameTV = itemView.findViewById(R.id.card_text);
             MfgTV = itemView.findViewById(R.id.card_text2);
+            up = itemView.findViewById(R.id.increase_btn);
+            down = itemView.findViewById(R.id.decrease_btn);
+
+//            up.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                        if (listener != null) {
+//                            int position = getAdapterPosition();
+//                            if (position != RecyclerView.NO_POSITION) {
+//                                listener.onDeleteClick(position);
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            });
         }
     }
 }

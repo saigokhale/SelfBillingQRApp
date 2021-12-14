@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     String password_str;
     DBHandler DB;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
 
         DB = new DBHandler(this);
+
 
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
