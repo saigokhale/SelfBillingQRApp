@@ -1,6 +1,7 @@
 package com.example.selfbillingqrapp;
 //import static com.example.selfbillingqrapp.DisplayDetails.cdb;
 import static com.example.selfbillingqrapp.HomeActivity2.cdb;
+import static com.example.selfbillingqrapp.HomeActivity2.wdb;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,26 +22,26 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class display2 extends AppCompatActivity
- {
-     public static TextView grandTotal;
-     public static int grandTotalPlus;
-     public static ArrayList<ModelCartHandler> tempArrayList;
-     public static int grandTotalplus;
-     public static ArrayList<ModelCartHandler> temparraylist;
-     private RecyclerView wishlistRV;
-     // Arraylist for storing data
-     //CartDB cdb;
-     private ArrayList<ModelCartHandler> wishlistArrayList;
+public class displaywish extends AppCompatActivity
+{
+    public static TextView grandTotal;
+    public static int grandTotalPlus;
+    public static ArrayList<ModelCartHandler> tempArrayList;
+    public static int grandTotalplus;
+    public static ArrayList<ModelCartHandler> temparraylist;
+    private RecyclerView wishlistRV2;
+    // Arraylist for storing data
+    //CartDB cdb;
+    private ArrayList<ModelCartHandler> wishlistArrayList2;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display2);
+        setContentView(R.layout.activity_displaywish);
 
-        wishlistArrayList = new ArrayList<>();
+        wishlistArrayList2 = new ArrayList<>();
         //Toast.makeText(getApplicationContext(), LoginActivity.getuname(), Toast.LENGTH_LONG).show();
-        Cursor res= cdb.getdata_byuname(LoginActivity.getuname());
+        Cursor res= wdb.getdata_byuname(LoginActivity.getuname());
 
         //    Toast.makeText(getApplicationContext(), "Entered here!", Toast.LENGTH_LONG).show();
         while(res.moveToNext()) {
@@ -48,25 +49,25 @@ public class display2 extends AppCompatActivity
             int price1 = res.getInt(4);
             int quant = res.getInt(3);
 
-            wishlistArrayList.add(new ModelCartHandler(name1, 1, price1));
+            wishlistArrayList2.add(new ModelCartHandler(name1, 1, price1));
         }
 
-        wishlistRV = findViewById(R.id.idRVCourse);
+        wishlistRV2 = findViewById(R.id.idRVCourse2);
 
         // we are initializing our adapter class and passing our arraylist to it.
-        CartAdapter cartAdapter = new CartAdapter(this, wishlistArrayList);
+        CartAdapter cartAdapter = new CartAdapter(this, wishlistArrayList2);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
-        wishlistRV.setLayoutManager(linearLayoutManager);
-        wishlistRV.setAdapter(cartAdapter);
+        wishlistRV2.setLayoutManager(linearLayoutManager);
+        wishlistRV2.setAdapter(cartAdapter);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(@NonNull RecyclerView wishlistRV, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView wishlistRV2, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 // this method is called
                 // when the item is moved.
                 return false;
@@ -76,7 +77,7 @@ public class display2 extends AppCompatActivity
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 // this method is called when we swipe our item to right direction.
                 // on below line we are getting the item at a particular position.
-                ModelCartHandler deletedCourse = wishlistArrayList.get(viewHolder.getAdapterPosition());
+                ModelCartHandler deletedCourse = wishlistArrayList2.get(viewHolder.getAdapterPosition());
 
                 // below line is to get the position
                 // of the item at that position.
@@ -84,21 +85,21 @@ public class display2 extends AppCompatActivity
 
                 // this method is called when item is swiped.
                 // below line is to remove item from our array list.
-                wishlistArrayList.remove(viewHolder.getAdapterPosition());
+                wishlistArrayList2.remove(viewHolder.getAdapterPosition());
 
                 // below line is to notify our item is removed from adapter.
                 cartAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
 
                 Toast.makeText(getApplicationContext(),deletedCourse.get_name(),Toast.LENGTH_LONG).show();
-                boolean temp=cdb.deletedata(deletedCourse.get_name());
+                boolean temp=wdb.deletedata(deletedCourse.get_name());
 
                 // below line is to display our snackbar with action.
-                Snackbar.make(wishlistRV, deletedCourse.get_name(), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
+                Snackbar.make(wishlistRV2, deletedCourse.get_name(), Snackbar.LENGTH_LONG).setAction("Undo", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         // adding on click listener to our action of snack bar.
                         // below line is to add our item to array list with a position.
-                        wishlistArrayList.add(position, deletedCourse);
+                        wishlistArrayList2.add(position, deletedCourse);
                         // below line is to notify item is
                         // added to our adapter class.
                         cartAdapter.notifyItemInserted(position);
@@ -107,15 +108,12 @@ public class display2 extends AppCompatActivity
             }
             // at last we are adding this
             // to our recycler view.
-        }).attachToRecyclerView(wishlistRV);
+        }).attachToRecyclerView(wishlistRV2);
 
     }
 
-
-
-
-     public ArrayList<ModelCartHandler> returnList()
-     {
-         return wishlistArrayList;
-     }
+    public ArrayList<ModelCartHandler> returnList()
+    {
+        return wishlistArrayList2;
+    }
 }

@@ -43,6 +43,22 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/card_text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="98dp"
+            android:layout_marginBottom="20dp"
+            android:layout_toRightOf="@id/card_text"
+            android:paddingEnd="20dp"
+            android:text="Cost: Rs"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/card_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

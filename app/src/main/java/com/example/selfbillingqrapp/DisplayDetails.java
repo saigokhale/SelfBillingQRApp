@@ -1,6 +1,7 @@
 package com.example.selfbillingqrapp;
 
 import static com.example.selfbillingqrapp.HomeActivity2.cdb;
+import static com.example.selfbillingqrapp.HomeActivity2.wdb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,8 @@ public class DisplayDetails extends AppCompatActivity
     int price;
     String name;
     String mfg;
-    Button /*binsert, bdisplay,*/ bcart, bwish;
+    Button  bcart, bwish;
+    ImageButton bhome;
     //EditText code,mfg,exp,price,name;
     TextView tv1,tv2,tv3,tv4;//,tv2;
     GroceryDB gdb ;
@@ -40,6 +43,7 @@ public class DisplayDetails extends AppCompatActivity
 //        bdisplay= (Button) findViewById(R.id.btnshow);
         bcart = (Button) findViewById(R.id.add_cart);
         bwish = (Button) findViewById(R.id.add_wishlist);
+        bhome = (ImageButton) findViewById(R.id.homeButtondetails);
 
 //        code = (EditText) findViewById(R.id.etcode);
 //        mfg = (EditText) findViewById(R.id.etmfg);
@@ -86,11 +90,14 @@ public class DisplayDetails extends AppCompatActivity
             //sb.append("\n");
         }
 
+        bhome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomeActivity2.class));
+            }
+        });
 
-
-
-
-        bwish.setOnClickListener(new View.OnClickListener() {
+        bcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean x=cdb.insertData(LoginActivity.getuname(),name,1,price);
@@ -101,55 +108,15 @@ public class DisplayDetails extends AppCompatActivity
                 Toast.makeText(DisplayDetails.this, x+"", Toast.LENGTH_SHORT).show();
             }
         });
-//        binsert.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                int code_s= Integer.parseInt(code.getText().toString());
-////                String mfg_s= mfg.getText().toString();
-////                String exp_s= exp.getText().toString();
-////                int price_s= Integer.parseInt(mfg.getText().toString());
-////                String name_s= name.getText().toString();
-//
-////                Toast.makeText(DisplayDetails.this, ""+name_s+code+mfg_s, Toast.LENGTH_LONG);
-//                //boolean checkinsert= gdb.insertData();
-//                //Toast.makeText(DisplayDetails.this, ""+checkinsert, Toast.LENGTH_LONG);
-//                //if(checkinsert)
-//                //    Toast.makeText(DisplayDetails.this, "Insertion successful!", Toast.LENGTH_LONG);
-//            }
-//        });
 
-
-
-//        bdisplay.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                int code_s= Integer.parseInt(code.getText().toString());
-////                String mfg_s= mfg.getText().toString();
-////                String exp_s= exp.getText().toString();
-////                int price_s= Integer.parseInt(mfg.getText().toString());
-////                String name_s= name.getText().toString();
-//
-//                Cursor res= gdb.getdata();
-//
-//                if(res.getCount()==0){
-//                    Toast.makeText(getApplicationContext(), "No data in Table", Toast.LENGTH_LONG);
-//                    return;
-//                }
-//                StringBuffer sb= new StringBuffer();
-//
-//                while(res.moveToNext())
-//                {
-//                    sb.append("Code: "+res.getString(0)+"\t");
-//                    sb.append("Name   : "+res.getString(1)+"\t");
-//                    sb.append("Mfg   : "+res.getString(2)+"\t");
-//                    sb.append("Exp   : "+res.getString(3)+"\t");
-//                    sb.append("Price   : "+res.getString(4)+"\t");
-//                    sb.append("\n");
-//                }
-//
-//                tv2.setText(sb.toString());
-//            }
-//        });
+        bwish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean x=wdb.insertData(LoginActivity.getuname(),name,1,price);
+                if(x)
+                    Toast.makeText(DisplayDetails.this, "Added to Wishlist", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }

@@ -10,14 +10,15 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="347dp"
         android:layout_height="254dp"
         android:orientation="horizontal"
+        app:cardBackgroundColor="#0B0B5A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:cardBackgroundColor="#0B0B5A"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.17">
 
@@ -147,6 +148,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.519" />
+
+    <ImageButton
+        android:id="@+id/homeButtondetails"
+        android:layout_width="52dp"
+        android:layout_height="46dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947"
+        app:srcCompat="@drawable/home_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,11 +14,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-public class CartDB extends SQLiteOpenHelper
+public class WishDB extends SQLiteOpenHelper
 {
-    public static final String DBNAME= "Cart3.db";
+    public static final String DBNAME= "Wish.db";
+    public static final String TABLENAME= "TABLENAME";
     int flag;
-    public CartDB(@Nullable Context context)
+    public WishDB(@Nullable Context context)
     {
         super(context, DBNAME, null, 1);
     }
@@ -26,19 +27,19 @@ public class CartDB extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase CartDB) {
 
-        CartDB.execSQL("CREATE TABLE cart3(id int primary key ,username TEXT ,name TEXT, quantity int, price int)");
+        CartDB.execSQL("CREATE TABLE TABLENAME(id int primary key ,username TEXT ,name TEXT, quantity int, price int)");
 
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase CartDB, int oldVersion, int newVersion) {
-        CartDB.execSQL("DROP TABLE IF EXISTS cart3");
+    public void onUpgrade(SQLiteDatabase WishDB, int oldVersion, int newVersion) {
+        WishDB.execSQL("DROP TABLE IF EXISTS TABLENAME");
     }
 
     public boolean insertData(String uname, String name, int quantity, int price)
     {
         try {
-            SQLiteDatabase CartDB = this.getWritableDatabase();
+            SQLiteDatabase WishDB = this.getWritableDatabase();
 
             if(hasItem(uname,name))
             {
@@ -47,7 +48,7 @@ public class CartDB extends SQLiteOpenHelper
                 ContentValues cv = new ContentValues();
                 cv.put("quantity",Integer.toString(new_qty));
 //              CartDB.execSQL("update cart3 set quantity="+new_qty+" where username= ? and name=?",new String[]{uname,name});
-                long affect= CartDB.update("cart3", cv, "username=? " + "and name=?", new String[] {uname, name});
+                long affect= WishDB.update(TABLENAME, cv, "username=? " + "and name=?", new String[] {uname, name});
                 return affect==-1?false:true;
             }
             else {
@@ -57,7 +58,7 @@ public class CartDB extends SQLiteOpenHelper
                 cv.put("name", name);
                 cv.put("quantity", quantity);
                 cv.put("price", price);
-                CartDB.insert("cart3", null, cv);
+                WishDB.insert(TABLENAME, null, cv);
                 return true;
             }
         }
@@ -72,13 +73,13 @@ public class CartDB extends SQLiteOpenHelper
     public boolean deletedata(String uname,String name)
     {
         try {
-            SQLiteDatabase CartDB = this.getWritableDatabase();
+            SQLiteDatabase WishDB = this.getWritableDatabase();
 
             if(hasItem(uname,name))
             {
                 //CartDB.rawQuery("update cart alter ");
-                 Cursor cursor=CartDB.rawQuery("delete from cart3 where username=? and name=?",new String[]{uname,name});
-                    return true;
+                Cursor cursor=WishDB.rawQuery("delete from TABLENAME where username=? and name=?",new String[]{uname,name});
+                return true;
 
             }
             else {
@@ -93,22 +94,22 @@ public class CartDB extends SQLiteOpenHelper
     }
     public Cursor getdata_byuname(String uname)
     {
-        SQLiteDatabase CartDB = this.getWritableDatabase();
-        Cursor cursor=CartDB.rawQuery("select * from cart3 where username =?",new String[]{uname});
+        SQLiteDatabase WishDB = this.getWritableDatabase();
+        Cursor cursor=WishDB.rawQuery("select * from TABLENAME where username =?",new String[]{uname});
         return cursor;
     }
 
     public Cursor getdata(String uname)
     {
-        SQLiteDatabase CartDB = this.getWritableDatabase();
-        Cursor cursor=CartDB.rawQuery("select * from cart3",null);
+        SQLiteDatabase WishDB = this.getWritableDatabase();
+        Cursor cursor=WishDB.rawQuery("select * from TABLENAME",null);
         return cursor;
     }
 
     public int getQuantity(String uname, String name)
     {
-        SQLiteDatabase CartDB = this.getWritableDatabase();
-        Cursor cursor=CartDB.rawQuery("select quantity from cart3 where username=? and name=?",new String[]{uname,name});
+        SQLiteDatabase WishDB = this.getWritableDatabase();
+        Cursor cursor=WishDB.rawQuery("select quantity from TABLENAME where username=? and name=?",new String[]{uname,name});
         if(cursor.getCount()>0)
             return cursor.getInt(0);
         else
@@ -116,16 +117,16 @@ public class CartDB extends SQLiteOpenHelper
     }
     public int getPrice(String uname, String name)
     {
-        SQLiteDatabase CartDB = this.getWritableDatabase();
-        Cursor cursor=CartDB.rawQuery("select * from cart3 where username=? and name=?",new String[]{uname,name});
+        SQLiteDatabase WishDB = this.getWritableDatabase();
+        Cursor cursor=WishDB.rawQuery("select * from TABLENAME where username=? and name=?",new String[]{uname,name});
         if(cursor.getCount()>0)
             return cursor.getInt(4);
         return 0;
     }
     public boolean hasItem(String uname, String name)
     {
-        SQLiteDatabase CartDB = this.getWritableDatabase();
-        Cursor cursor=CartDB.rawQuery("select * from cart3 where username=? and name=?",new String[]{uname,name});
+        SQLiteDatabase WishDB = this.getWritableDatabase();
+        Cursor cursor=WishDB.rawQuery("select * from TABLENAME where username=? and name=?",new String[]{uname,name});
         if(cursor.getCount()>0)
             return true;
         return false;
@@ -134,12 +135,12 @@ public class CartDB extends SQLiteOpenHelper
 
     public boolean deletedata(String name) {
         try {
-            SQLiteDatabase CartDB = this.getWritableDatabase();
+            SQLiteDatabase WishDB = this.getWritableDatabase();
             String uname=LoginActivity.getuname();
             if(hasItem(uname,name))
             {
                 //Cursor cursor=CartDB.rawQuery("delete from cart3 where username=? and name=?",new String[]{uname,name});
-                CartDB.delete("cart3", "username=?" + "and name=?", new String[]{uname,name});
+                WishDB.delete(TABLENAME, "username=?" + "and name=?", new String[]{uname,name});
                 return true;
             }
             else {
@@ -154,3 +155,4 @@ public class CartDB extends SQLiteOpenHelper
     }
 
 }
+

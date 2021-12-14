@@ -18,11 +18,13 @@ import java.util.List;
 public class HomeActivity2 extends AppCompatActivity {
     ImageButton QRButton;
     ImageButton WishButton;
+    ImageButton CartButton;
     int PERM_CODE = 11;
     String[] permissions = {
             Manifest.permission.CAMERA
     };
     public static CartDB cdb;
+    public static WishDB wdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,25 @@ public class HomeActivity2 extends AppCompatActivity {
 
         QRButton = (ImageButton) findViewById(R.id.qrbtn);
         WishButton=(ImageButton) findViewById(R.id.wishbtn);
+        CartButton=(ImageButton) findViewById(R.id.cartbtn);
         cdb= new CartDB(this);
+        wdb=new WishDB(this);
 
-        WishButton.setOnClickListener(new View.OnClickListener() {
+        CartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), display2.class));
             }
         });
+
+        WishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), displaywish.class));
+            }
+        });
+
+
 
         QRButton.setOnClickListener(new View.OnClickListener() {
             @Override
