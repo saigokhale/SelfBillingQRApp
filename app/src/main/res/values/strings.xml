@@ -11,4 +11,5 @@
     <string name="display_product_details_here">Display product details here</string>
     <string name="add_to_cart">Add to Cart</string>
     <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="username">username</string>
 </resources>

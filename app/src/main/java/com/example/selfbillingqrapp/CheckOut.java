@@ -18,11 +18,11 @@ public class CheckOut extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_out);
 
-
-
+        //clears all data in cart after checkout
         cdb.cleardata(LoginActivity.getuname());
-        gohome=findViewById(R.id.button_home_last);
 
+        gohome=findViewById(R.id.button_home_last);
+        //go to home activity after checkout
         gohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

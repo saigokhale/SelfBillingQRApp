@@ -15,7 +15,10 @@ public class SignupActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     EditText repassword;
+
+    //Handler for Database of Users
     DBHandler DB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class SignupActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.enterpassword);
         repassword = (EditText) findViewById(R.id.confirmpassword);
 
+        //calls constructor for DB Handler
         DB = new DBHandler(this);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +42,7 @@ public class SignupActivity extends AppCompatActivity {
 
     }
 
+    //after successful signup go to home activity
     public void go_to_home()
     {
         String user= username.getText().toString();
@@ -49,9 +54,10 @@ public class SignupActivity extends AppCompatActivity {
         }
         else{
             if(pass.equals(repass)){
-                boolean checkUsername= DB.checkUsername(user);
+
+                boolean checkUsername= DB.checkUsername(user);       //checks username in user database
                 if(checkUsername==false) {
-                    boolean insert = DB.insertData(user, pass);
+                    boolean insert = DB.insertData(user, pass);      //inserts new user in the database
                     if(insert) {
                         Toast.makeText(SignupActivity.this, "Successfully registered!", Toast.LENGTH_LONG).show();
                         Intent intent_signup= new Intent(getApplicationContext(), HomeActivity2.class);

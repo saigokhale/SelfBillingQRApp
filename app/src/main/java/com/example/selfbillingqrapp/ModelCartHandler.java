@@ -6,6 +6,7 @@ public class ModelCartHandler
     private int qty;
     private int price;
     public static int cash=0;
+
     // Constructor
     public ModelCartHandler(String product_name, int qty,int price) {
         this.product_name = product_name;
@@ -13,7 +14,7 @@ public class ModelCartHandler
         this.price = price;
     }
 
-    // Getter and Setter
+    // Getter and Setter to be Accessed by CardAdapter
     public String get_name() {
         return product_name;
     }
@@ -37,7 +38,6 @@ public class ModelCartHandler
     public void setPrice(int price) {
         this.price = price;
     }
-
 
     public int setTotalCash(int cash_in) {
         return cash_in;

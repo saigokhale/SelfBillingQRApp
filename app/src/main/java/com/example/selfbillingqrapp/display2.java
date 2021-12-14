@@ -28,35 +28,39 @@ import java.util.Collections;
 
 public class display2 extends AppCompatActivity
 {
-    public static TextView grandTotal;
+
+    //wishlistRV is used for Cart and WishlistRV2 for Wishlist
+
     public static int grandTotalPlus;
     public static ArrayList<ModelCartHandler> tempArrayList;
     public static int grandTotalplus;
-    public static ArrayList<ModelCartHandler> temparraylist;
     private RecyclerView wishlistRV;
     private Button calc_total,check_out;
     private TextView show_total;
-    // Arraylist for storing data
-    //CartDB cdb;
     private ArrayList<ModelCartHandler> wishlistArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display2);
 
+        //instruction to user
         Toast.makeText(getApplicationContext(), "Swipe to delete item", Toast.LENGTH_SHORT).show();
 
+        //Array List of Card View Adapter
         wishlistArrayList = new ArrayList<>();
-        //Toast.makeText(getApplicationContext(), LoginActivity.getuname(), Toast.LENGTH_LONG).show();
+
+        //Function in CartDB to access cart Data using username
         Cursor res= cdb.getdata_byuname(LoginActivity.getuname());
 
-        //    Toast.makeText(getApplicationContext(), "Entered here!", Toast.LENGTH_LONG).show();
+        //Iterate over cursor to get values
         while(res.moveToNext()) {
             String name1 = res.getString(2);
             int price1 = res.getInt(4);
             int quant = res.getInt(3);
 
+            //insert into arraylist
             wishlistArrayList.add(new ModelCartHandler(name1, 1, price1));
         }
 
@@ -65,6 +69,7 @@ public class display2 extends AppCompatActivity
         show_total = findViewById(R.id.footer_text);
         check_out= findViewById(R.id.checkout_button);
 
+        //Show total of the cart
         calc_total.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +81,7 @@ public class display2 extends AppCompatActivity
             }
         });
 
+        //After Checking out of Cart Show ALert Dialog
         check_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,13 +90,9 @@ public class display2 extends AppCompatActivity
                 builder.setMessage("Confirm Checkout?");
                 // Set Alert Title
                 builder.setTitle("Hey "+LoginActivity.getuname());
-                // Set Cancelable false
-                // for when the user clicks on the outside
-                // the Dialog Box then it will remain show
+                // Set Cancelable false for when the user clicks on the outside the Dialog Box then it will remain show
                 builder.setCancelable(false);
-                // Set the positive button with yes name
-                // OnClickListener method is use of
-                // DialogInterface interface.
+                // Set the positive button with yes name OnClickListener method is use of  DialogInterface interface.
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
@@ -101,9 +103,7 @@ public class display2 extends AppCompatActivity
                         startActivity(new Intent(getApplicationContext(), CheckOut.class));
                     }
                 });
-                // Set the Negative button with No name
-                // OnClickListener method is use
-                // of DialogInterface interface.
+                // Set the Negative button with No name  OnClickListener method is use of DialogInterface interface.
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener()
                 {
                     @Override
@@ -132,6 +132,8 @@ public class display2 extends AppCompatActivity
         wishlistRV.setLayoutManager(linearLayoutManager);
         wishlistRV.setAdapter(cartAdapter);
 
+
+        //To Delete Card on Swiping
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView wishlistRV, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -157,7 +159,7 @@ public class display2 extends AppCompatActivity
                 // below line is to notify our item is removed from adapter.
                 cartAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
 
-                Toast.makeText(getApplicationContext(),deletedCourse.get_name(),Toast.LENGTH_LONG).show();
+                //Deletes the Item from the Cart Database
                 boolean temp=cdb.deletedata(deletedCourse.get_name());
 
                 // below line is to display our snackbar with action.
@@ -177,13 +179,5 @@ public class display2 extends AppCompatActivity
             // to our recycler view.
         }).attachToRecyclerView(wishlistRV);
 
-    }
-
-
-
-
-    public ArrayList<ModelCartHandler> returnList()
-    {
-        return wishlistArrayList;
     }
 }

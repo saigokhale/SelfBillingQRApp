@@ -19,13 +19,19 @@ public class HomeActivity2 extends AppCompatActivity {
     ImageButton QRButton;
     ImageButton WishButton;
     ImageButton CartButton;
+    Button LogOutButton;
+
+    //Code for camera permission
     int PERM_CODE = 11;
     String[] permissions = {
             Manifest.permission.CAMERA
     };
+
+    //All Databases open after loggin in, hence static
     public static CartDB cdb;
     public static WishDB wdb;
-    public static GroceryDB gdb ;
+    public static GroceryDB gdb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +40,17 @@ public class HomeActivity2 extends AppCompatActivity {
         QRButton = (ImageButton) findViewById(R.id.qrbtn);
         WishButton=(ImageButton) findViewById(R.id.wishbtn);
         CartButton=(ImageButton) findViewById(R.id.cartbtn);
+        LogOutButton=(Button) findViewById(R.id.logout_btn);
         cdb= new CartDB(this);
         wdb=new WishDB(this);
         gdb = new GroceryDB(this);
+
+        LogOutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+        });
 
         CartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +66,6 @@ public class HomeActivity2 extends AppCompatActivity {
             }
         });
 
-
-
         QRButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,12 +73,9 @@ public class HomeActivity2 extends AppCompatActivity {
             }
         });
     }
-    public void openQrActivity()
-    {
-        Intent intent_QR= new Intent(this, QrActivity.class);
-        startActivity(intent_QR);
-    }
 
+
+    //checks permission for using camera
     private boolean checkpermissions(){
         List<String> listofpermisssions = new ArrayList<>();
         for (String perm: permissions){
@@ -84,23 +93,4 @@ public class HomeActivity2 extends AppCompatActivity {
 }
 
 
-
-//    Button btnScan;
-
-//
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        btnScan = (Button) findViewById(R.id.button);
-//        btnScan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), ScannerActivity.class));
-//            }
-//        });
-//
-//    }
 

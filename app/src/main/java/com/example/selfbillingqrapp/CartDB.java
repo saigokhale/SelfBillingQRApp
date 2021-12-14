@@ -35,6 +35,8 @@ public class CartDB extends SQLiteOpenHelper
         CartDB.execSQL("DROP TABLE IF EXISTS cart3");
     }
 
+
+    //Inserts Data into Cart if not previously present
     public boolean insertData(String uname, String name, int quantity, int price)
     {
         try {
@@ -46,7 +48,6 @@ public class CartDB extends SQLiteOpenHelper
                 int new_qty=getQuantity(uname,name)+1;
                 ContentValues cv = new ContentValues();
                 cv.put("quantity",Integer.toString(new_qty));
-//              CartDB.execSQL("update cart3 set quantity="+new_qty+" where username= ? and name=?",new String[]{uname,name});
                 long affect= CartDB.update("cart3", cv, "username=? " + "and name=?", new String[] {uname, name});
                 return affect==-1?false:true;
             }
@@ -69,6 +70,7 @@ public class CartDB extends SQLiteOpenHelper
 
     }
 
+    //delete values by uname and name
     public boolean deletedata(String uname,String name)
     {
         try {
@@ -91,6 +93,8 @@ public class CartDB extends SQLiteOpenHelper
         }
 
     }
+
+    //Get data of user by username
     public Cursor getdata_byuname(String uname)
     {
         SQLiteDatabase CartDB = this.getWritableDatabase();
@@ -98,6 +102,7 @@ public class CartDB extends SQLiteOpenHelper
         return cursor;
     }
 
+    //get all data of table
     public Cursor getdata(String uname)
     {
         SQLiteDatabase CartDB = this.getWritableDatabase();
@@ -105,6 +110,7 @@ public class CartDB extends SQLiteOpenHelper
         return cursor;
     }
 
+    //get quantity of items
     public int getQuantity(String uname, String name)
     {
         SQLiteDatabase CartDB = this.getWritableDatabase();
@@ -114,6 +120,8 @@ public class CartDB extends SQLiteOpenHelper
         else
             return 0;
     }
+
+    //get price of items
     public int getPrice(String uname, String name)
     {
         SQLiteDatabase CartDB = this.getWritableDatabase();
@@ -122,6 +130,8 @@ public class CartDB extends SQLiteOpenHelper
             return cursor.getInt(4);
         return 0;
     }
+
+    //check if the user has the item in cart
     public boolean hasItem(String uname, String name)
     {
         SQLiteDatabase CartDB = this.getWritableDatabase();
@@ -131,7 +141,7 @@ public class CartDB extends SQLiteOpenHelper
         return false;
     }
 
-
+    //delete data from cart after swipe
     public boolean deletedata(String name) {
         try {
             SQLiteDatabase CartDB = this.getWritableDatabase();
@@ -153,6 +163,7 @@ public class CartDB extends SQLiteOpenHelper
 
     }
 
+    //delete all data of user after checkout
     public boolean cleardata(String uname) {
         try {
             SQLiteDatabase CartDB = this.getWritableDatabase();

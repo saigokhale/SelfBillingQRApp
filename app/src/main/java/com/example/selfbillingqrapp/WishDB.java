@@ -18,7 +18,6 @@ public class WishDB extends SQLiteOpenHelper
 {
     public static final String DBNAME= "Wish.db";
     public static final String TABLENAME= "TABLENAME";
-    int flag;
     public WishDB(@Nullable Context context)
     {
         super(context, DBNAME, null, 1);
@@ -43,11 +42,9 @@ public class WishDB extends SQLiteOpenHelper
 
             if(hasItem(uname,name))
             {
-                //CartDB.rawQuery("update cart alter ");
                 int new_qty=getQuantity(uname,name)+1;
                 ContentValues cv = new ContentValues();
                 cv.put("quantity",Integer.toString(new_qty));
-//              CartDB.execSQL("update cart3 set quantity="+new_qty+" where username= ? and name=?",new String[]{uname,name});
                 long affect= WishDB.update(TABLENAME, cv, "username=? " + "and name=?", new String[] {uname, name});
                 return affect==-1?false:true;
             }
@@ -92,6 +89,7 @@ public class WishDB extends SQLiteOpenHelper
         }
 
     }
+
     public Cursor getdata_byuname(String uname)
     {
         SQLiteDatabase WishDB = this.getWritableDatabase();
@@ -115,6 +113,7 @@ public class WishDB extends SQLiteOpenHelper
         else
             return 0;
     }
+
     public int getPrice(String uname, String name)
     {
         SQLiteDatabase WishDB = this.getWritableDatabase();
@@ -123,6 +122,7 @@ public class WishDB extends SQLiteOpenHelper
             return cursor.getInt(4);
         return 0;
     }
+
     public boolean hasItem(String uname, String name)
     {
         SQLiteDatabase WishDB = this.getWritableDatabase();
@@ -131,7 +131,6 @@ public class WishDB extends SQLiteOpenHelper
             return true;
         return false;
     }
-
 
     public boolean deletedata(String name) {
         try {

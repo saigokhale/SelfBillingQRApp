@@ -31,7 +31,6 @@ import androidx.lifecycle.LifecycleOwner;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
-//import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
 public class QrActivity<permissions> extends AppCompatActivity
 {
@@ -49,21 +48,23 @@ public class QrActivity<permissions> extends AppCompatActivity
         codeScannerView = (CodeScannerView) findViewById(R.id.scannerView);
         codeScanner = new CodeScanner(this, codeScannerView);
 
-
+        //Part where Library uses it's algorithm to decode the Qr
         codeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull Result result) {
-                runOnUiThread(new Runnable() {
+                runOnUiThread(new Runnable() {                  //does background operation on current page and updates on main
                     @Override
                     public void run() {
-                        //Toast.makeText(this, result.toString(),Toast.LENGTH_SHORT);
-                        //SUPER IMPORTANT PART OF TH CODE WHICH WILL TAKE US TO THE NEXT ACTIVITY
-                        txt.setText(result.getText());
-                        String code=txt.getText().toString();
-                        Toast.makeText(QrActivity.this, code,Toast.LENGTH_SHORT).show();
+                        //SUPER IMPORTANT PART OF THE CODE WHICH WILL TAKE US TO THE NEXT ACTIVITY
+
+                        txt.setText(result.getText());          //result stores the value of scanned code
+                        String code=txt.getText().toString();   //code is the scanned value of the QR Code, hashcode for database in this case
+
                         //perform intent from here, activity to add item into cart or not
 
                         Intent intent_display = new Intent(getApplicationContext(), DisplayDetails.class);
+
+                        //send database code along with the intent
                         intent_display.putExtra("code", code);
                         startActivity(intent_display);
                     }
@@ -72,6 +73,8 @@ public class QrActivity<permissions> extends AppCompatActivity
         });
 
     }
+
+    //on resuming activity use camera resource again
     @Override
     protected void onResume() {
         super.onResume();
@@ -79,16 +82,19 @@ public class QrActivity<permissions> extends AppCompatActivity
         requestCamera();
     }
 
+    //if activity is paused, exit camera resource
     @Override
     protected void onPause() {
         codeScanner.releaseResources();
         super.onPause();
     }
 
+    //preview of camera starts after permission granted
     private void requestCamera() {
         codeScanner.startPreview();
     }
 
+    //accesses permission information
     private void setPermission()
     {
         int permission= ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
@@ -98,13 +104,14 @@ public class QrActivity<permissions> extends AppCompatActivity
         }
     }
 
+    //Making a Camera Request to User
     private void makeRequest() {
         Pattern ptr = Pattern.compile(" ");
         ActivityCompat.requestPermissions(this, ptr.split(Manifest.permission.CAMERA.toString()), 103);
 
     }
 
-
+    //If request code of camera isn't granted
     public void OnRequestPermissionsResultCallback(int requestCode,String[] permissions, int[] grantResults)
     {
         if(requestCode==103)

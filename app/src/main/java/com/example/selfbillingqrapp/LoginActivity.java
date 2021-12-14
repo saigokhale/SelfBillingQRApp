@@ -17,9 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     Button sign_up;
     EditText username;
     EditText password;
-    String username_str;
-    static String send_uname;
-    String password_str;
+    static String send_uname;   //make the current username available in all classes
     DBHandler DB;
 
 
@@ -56,16 +54,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //activity opens signup
     public void openSignup()
     {
         Intent intent_signup= new Intent(this, SignupActivity.class);
         startActivity(intent_signup);
     }
 
+    //checks login credentials
     public void trylogin()
     {
         String user= username.getText().toString();
         String pass= password.getText().toString();
+
+        //function to set static username user
         setuname(user);
 
         if(user.equals("")||pass.equals(""))
@@ -89,6 +91,8 @@ public class LoginActivity extends AppCompatActivity {
     {
         send_uname=username;
     }
+
+    //function to retrieve username in any class
     public static String getuname()
     {
         return send_uname;

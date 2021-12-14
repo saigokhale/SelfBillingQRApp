@@ -33,7 +33,7 @@ public class GroceryDB extends SQLiteOpenHelper
 
         }
 
-        //public boolean insertData(int srno, String name, String mdate, String edate, int price)
+        //We have previously hardcoded values into the grocery database, so this function was used for that implementation
         public boolean insertData(String a, String b, String c , String d, String e)
         {
             try {
@@ -54,6 +54,7 @@ public class GroceryDB extends SQLiteOpenHelper
             }
         }
 
+        //access data in grocery database by code(hashvalue)
         public Cursor getbycode(String srno)
         {
             try{
@@ -66,31 +67,16 @@ public class GroceryDB extends SQLiteOpenHelper
                 return null;
             }
 
-            //Toast.makeText(this,"Entered checkUsername",Toast.LENGTH_LONG).show();
-
-
         }
-    public Cursor getdata()
-    {
-        SQLiteDatabase GroceryDB = this.getWritableDatabase();
 
-        Cursor cursor=GroceryDB.rawQuery("select * from items",null);
-        return cursor;
-    }
+        //return all data of grocery items
+        public Cursor getdata()
+        {
+            SQLiteDatabase GroceryDB = this.getWritableDatabase();
+            Cursor cursor=GroceryDB.rawQuery("select * from items",null);
+            return cursor;
+        }
 
-//        public boolean matchPassword(String username, String password)
-//        {
-//            try {
-//                SQLiteDatabase LoginDB = this.getWritableDatabase();
-//                Cursor cursor = LoginDB.rawQuery("Select * from users where username= ? and password= ?", new String[]{username, password});
-//                //Toast.makeText("entered match ",this,Toast.LENGTH_LONG).show();
-//                return cursor.getCount() > 0 ? true : false;
-//            }
-//            catch(Exception e)
-//            {
-//                return false;
-//            }
-//        }
 
     }
 

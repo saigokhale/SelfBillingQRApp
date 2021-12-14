@@ -46,6 +46,7 @@ public class DBHandler extends SQLiteOpenHelper
 
     }
 
+    //check for username in database
     public boolean checkUsername(String username)
     {
         try{
@@ -58,11 +59,9 @@ public class DBHandler extends SQLiteOpenHelper
             return false;
         }
 
-        //Toast.makeText(this,"Entered checkUsername",Toast.LENGTH_LONG).show();
-
-
     }
 
+    //match password in the database while login
     public boolean matchPassword(String username, String password)
     {
         try {

@@ -26,7 +26,6 @@ public class DisplayDetails extends AppCompatActivity
     String mfg;
     Button  bcart, bwish;
     ImageButton bhome;
-    //EditText code,mfg,exp,price,name;
     TextView tv1,tv2,tv3,tv4;//,tv2;
 
 
@@ -36,30 +35,18 @@ public class DisplayDetails extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaydetails);
 
-        //wishobj=
+        String code_in="1";         //number of codes inputted from QR Activity
 
-        String code_in="1";
-
-//        binsert =(Button) findViewById(R.id.btninsert);
-//        bdisplay= (Button) findViewById(R.id.btnshow);
         bcart = (Button) findViewById(R.id.add_cart);
         bwish = (Button) findViewById(R.id.add_wishlist);
         bhome = (ImageButton) findViewById(R.id.homeButtondetails);
-
-//        code = (EditText) findViewById(R.id.etcode);
-//        mfg = (EditText) findViewById(R.id.etmfg);
-//        exp = (EditText) findViewById(R.id.etexp);
-//        price = (EditText) findViewById(R.id.etprice);
-//        name = (EditText) findViewById(R.id.etname);
 
         tv1= (TextView) findViewById(R.id.textView1);
         tv2= (TextView) findViewById(R.id.textView2);
         tv3= (TextView) findViewById(R.id.textView3);
         tv4= (TextView) findViewById(R.id.textView4);
 
-
-
-
+        //Gets values passed on to intent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             code_in= extras.getString("code");
@@ -68,16 +55,17 @@ public class DisplayDetails extends AppCompatActivity
 
         Cursor res= gdb.getbycode(code_in);
 
-        if(res.getCount()==0){
+        if(res.getCount()==0)
+        {
             //Toast to display index of row in grocery database
             //Toast.makeText(getApplicationContext(), "No data in Table", Toast.LENGTH_LONG);
             return;
         }
 
-        StringBuffer sb= new StringBuffer();
-
         while(res.moveToNext())
         {
+            //Setting Values to display details of the Scanned Item
+
             name=res.getString(1);
             tv1.setText(name);
 
@@ -89,9 +77,10 @@ public class DisplayDetails extends AppCompatActivity
 
             price=Integer.valueOf(res.getString(4));
             tv4.setText("₹ "+Integer.toString(price));
-            //sb.append("\n");
+
         }
 
+        //Go to Home Activity
         bhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,14 +88,13 @@ public class DisplayDetails extends AppCompatActivity
             }
         });
 
+        //Add to Cart
         bcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Insert data into cart data
                 boolean x=cdb.insertData(LoginActivity.getuname(),name,1,price);
-                //tempList= wishobj.returnList();
-//                wishobj.putValue(name, mfg,price);
-                //Intent intent_display2= new Intent(getApplicationContext(), display2.class);
-                //startActivity(intent_display2);
+                //Show toast if added
                 if(x)
                     Toast.makeText(DisplayDetails.this, "Added to cart", Toast.LENGTH_SHORT).show();
                 else
@@ -117,6 +105,7 @@ public class DisplayDetails extends AppCompatActivity
             }
         });
 
+        //Add to Wishlist
         bwish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
