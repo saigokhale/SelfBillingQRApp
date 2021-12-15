@@ -77,6 +77,15 @@ public class GroceryDB extends SQLiteOpenHelper
             return cursor;
         }
 
+        public boolean contains(String code_in)
+        {
+            SQLiteDatabase GroceryDB = this.getWritableDatabase();
+            Cursor cursor=GroceryDB.rawQuery("select * from items where code=?",new String[] {code_in});
+            if(cursor.getCount()>0)
+                return true;
+            return false;
+        }
+
 
     }
 

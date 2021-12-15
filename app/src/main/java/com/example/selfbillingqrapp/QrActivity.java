@@ -1,6 +1,7 @@
 package com.example.selfbillingqrapp;
 
 import static com.budiyev.android.codescanner.CodeScanner.*;
+import static com.example.selfbillingqrapp.HomeActivity2.gdb;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,11 +63,19 @@ public class QrActivity<permissions> extends AppCompatActivity
 
                         //perform intent from here, activity to add item into cart or not
 
-                        Intent intent_display = new Intent(getApplicationContext(), DisplayDetails.class);
+                        if(gdb.contains(code))
+                        {
+                            Intent intent_display = new Intent(getApplicationContext(), DisplayDetails.class);
+                            //send database code along with the intent
+                            intent_display.putExtra("code", code);
+                            startActivity(intent_display);
+                        }
+                        else
+                        {
+                            Toast.makeText(QrActivity.this, "This Item is not in our store",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), HomeActivity2.class));
+                        }
 
-                        //send database code along with the intent
-                        intent_display.putExtra("code", code);
-                        startActivity(intent_display);
                     }
                 });
             }
