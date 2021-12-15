@@ -37,6 +37,7 @@
                 android:layout_marginEnd="23dp"
                 android:layout_marginBottom="18dp"
                 android:hint="name"
+                android:textStyle="bold"
                 android:textAlignment="center"
                 android:textColorHint="@color/white"
                 android:textSize="30dp"
@@ -151,8 +152,9 @@
 
     <ImageButton
         android:id="@+id/homeButtondetails"
-        android:layout_width="52dp"
-        android:layout_height="46dp"
+        android:layout_width="39dp"
+        android:layout_height="34dp"
+        android:background="?selectableItemBackgroundBorderless"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +162,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.947"
-        app:srcCompat="@drawable/home" />
+        app:srcCompat="@drawable/home_btn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
